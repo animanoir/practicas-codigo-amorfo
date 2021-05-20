@@ -2,13 +2,14 @@ Estelo esteloGrande, esteloChico, esteloMedio;
 
 void setup() {
   size(1000, 1000);
-  esteloGrande = new Estelo(color(255, 0, 0), 200, true);
-  esteloMedio = new Estelo(color(0, 255, 0), 100, false);
+  esteloGrande = new Estelo(color(255, 0, 0), 200, false);
+  esteloMedio = new Estelo(color(0, 0, 255), 100, true);
   esteloChico = new Estelo(color(255), 25, false);
+  background(0);
 }
 
 void draw() {
-  // Si lo quitamos le da efecto de pintura.
+
   background(0);
   esteloGrande.renderizar();
   esteloMedio.renderizar();
@@ -23,7 +24,7 @@ class Estelo {
   int tamano;
   boolean conNoise;
   float nVal;
-  float nInt = 100; // noise intensity
+  float nInt = 10; // noise intensity
   float nAmp = 100; // noise amplitude
   float x = 1;
   float y = 1;
@@ -55,7 +56,7 @@ class Estelo {
 
     if (conNoise) {
       stroke(c);
-      strokeWeight(1);
+      strokeWeight(3);
       beginShape();
       for (float theta = 0; theta <= TAU; theta+=TAU/266) {
         nVal = noise(cos(theta)*nInt+1, sin(theta)*nInt+1, t ); // map noise value to match the amplitude
