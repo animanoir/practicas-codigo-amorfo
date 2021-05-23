@@ -1,4 +1,4 @@
-float radio = 10;
+float radio = 0;
 int centX; 
 int centY;
 float x, y;
@@ -9,6 +9,7 @@ int sepX = 33;
 int sepY = 33;
 
 int hue;
+int sat;
 
 
 void setup() {
@@ -26,17 +27,18 @@ void setup() {
 void draw() {  
 
   hue = (int)map(mouseX, 0, width, 0, 255);
+  sat = (int)map(mouseY, 0, height, 0, 255);
   //background(0);
   
   for (float ang = 0; ang <= 1440; ang+=50) {
-    stroke(hue/2, 255, 255);
+    stroke(hue, sat, 255);
     float rad = radians(ang);
     radio+=0.05;
     x = centX + (radio * cos(rad));
     y = centY + (radio * sin(rad));
 
     if (lastX > -999) {
-      line(x, y, lastX, lastY);
+      ellipse(x, y, lastX, lastY);
     }
 
 
@@ -64,4 +66,9 @@ void draw() {
   }
   
   */
+}
+
+void mouseClicked(){
+ save(mouseX+"-colores.png"); 
+ print("se guardó la imagen.");
 }
